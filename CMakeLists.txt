@@ -19,15 +19,8 @@ set(SOURCES
 )
 
 # Create a library (static or shared)
-add_library(ControllerLib ${SOURCES})
+add_library(Controller ${SOURCES})
 
 # Link the library with SDL2
-target_link_libraries(ControllerLib ${SDL2_LIBRARIES})
-
-# If this project is the top-level project (not included as a submodule)
-if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
-    # Add an executable to test/compile Controller independently
-    add_executable(ControllerExec main.cpp)
-    target_link_libraries(ControllerExec ControllerLib ${SDL2_LIBRARIES})
-endif()
+target_link_libraries(Controller ${SDL2_LIBRARIES})
 
