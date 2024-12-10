@@ -19,9 +19,6 @@ set(SOURCES
     sources/Controller.cpp
 )
 
-# Create the executable
-add_executable(${PROJECT_NAME} ${SOURCES})
-
 # Link with SDL2
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
 
