@@ -24,3 +24,7 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Link with SDL2
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
+
+# Create a library instead of an executable
+add_library(ControllerLib ${SOURCES})
+
