@@ -56,8 +56,9 @@ void Controller::processEvent(const SDL_Event& event) {
     } else if (event.type == SDL_CONTROLLERAXISMOTION) {
         int axis = event.caxis.axis;
         int value = event.caxis.value;
+        currentAxisValues[axis] = value;
+        std::cout << "Axis " << axis << " value: " << value << std::endl;
 
-        // std::cout << "Axis " << axis << " moved to " << value << "." << std::endl;
         if (axisActions.find(axis) != axisActions.end()) {
             axisActions[axis](value);
         }
