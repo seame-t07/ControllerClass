@@ -4,10 +4,12 @@
 
 void moveLeftandRight(int value) {
     std::cout << "Axis moved to " << value << std::endl;
+    car.setServoAngle(value);
 }
 
 void moveForwardandBackward(int value) {
     std::cout << "Axis moved to " << value << std::endl;
+    car.setMotorSpeed(value);
 }
 
 JetCar car;
