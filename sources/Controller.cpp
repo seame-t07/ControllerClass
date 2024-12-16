@@ -46,10 +46,10 @@ void Controller::processEvent(const SDL_Event& event) {
             if (buttonActions.find(button) != buttonActions.end()) {
                 if (isPressed) {
                     std::cout << "Button " << button << " pressed." << std::endl;
-                    buttonActions[button].onPress();
+                    // buttonActions[button].onPress();
                 } else {
                     std::cout << "Button " << button << " released." << std::endl;
-                    buttonActions[button].onRelease();
+                    // buttonActions[button].onRelease();
                 }
             }
         }
@@ -58,9 +58,9 @@ void Controller::processEvent(const SDL_Event& event) {
         int value = event.caxis.value;
 
         std::cout << "Axis " << axis << " moved to " << value << "." << std::endl;
-        if (axisActions.find(axis) != axisActions.end()) {
-            axisActions[axis](value);
-        }
+        // if (axisActions.find(axis) != axisActions.end()) {
+        //     axisActions[axis](value);
+        // }
     } else if (event.type == SDL_CONTROLLERDEVICEREMOVED) {
         // Handle the disconnection of the game controller
         std::cout << "Game controller disconnected." << std::endl;
