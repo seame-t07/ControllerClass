@@ -2,6 +2,8 @@
 #include "JetCar.hpp"
 #include <iostream>
 
+JetCar car;
+
 void moveLeftandRight(int value) {
     std::cout << "Axis moved to " << value << std::endl;
     value -= -129;
@@ -13,9 +15,6 @@ void moveForwardandBackward(int value) {
     value -= 16319;
     car.setMotorSpeed(value);
 }
-
-JetCar car;
-
 
 int main() {
     try {
