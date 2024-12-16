@@ -5,15 +5,17 @@
 JetCar car;
 
 void moveLeftandRight(int value) {
+    
+    value -= -129;
     std::cout << "Axis moved to " << value << std::endl;
-    // value -= -129;
-    // car.setServoAngle(value);
+    car.setServoAngle(value);
 }
 
 void moveForwardandBackward(int value) {
+    
+    value -= 16319;
     std::cout << "Axis moved to " << value << std::endl;
-    // value -= 16319;
-    // car.setMotorSpeed(value);
+    car.setMotorSpeed(value);
 }
 
 int main() {

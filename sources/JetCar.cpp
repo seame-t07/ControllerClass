@@ -39,9 +39,9 @@ void JetCar::setMotorSpeed(int speed) {
         setPWM(motor_handle, 6, 0, 0);         // IN4
         setPWM(motor_handle, 7, 0, pwm_value); // ENB
     } else if (speed < 0) { // Backward
-        setPWM(motor_handle, 0, 0, 0);         // IN1
+        setPWM(motor_handle, 0, 0, pwm_value);         // IN1
         setPWM(motor_handle, 1, 0, pwm_value); // IN2
-        setPWM(motor_handle, 2, 0, pwm_value); // ENA
+        setPWM(motor_handle, 2, 0, 0); // ENA
         setPWM(motor_handle, 5, 0, 0);         // IN3
         setPWM(motor_handle, 6, 0, pwm_value); // IN4
         setPWM(motor_handle, 7, 0, pwm_value); // ENB
