@@ -5,31 +5,41 @@
 JetCar car;
 
 // Functions to control the car
-void moveForwardBack(int speed) {
-    car.setMotorSpeed(speed);
+void moveForward() {
+    car.setMotorSpeed(100);
+    std::cout << "Car moving forward" << std::endl;
+}
+
+void moveBackward() {
+    car.setMotorSpeed(-100);
+    std::cout << "Car moving backward" << std::endl;
 }
 
 void stopMovement() {
     car.setMotorSpeed(0);
+    std::cout << "Car stopped" << std::endl;
 }
 
-void turnLeftRight(int angle) {
-    car.setServoAngle(angle);
+void turnLeft() {
+    car.setServoAngle(-45);
+    std::cout << "Car turning left" << std::endl;
+}
+
+void turnRight() {
+    car.setServoAngle(45);
+    std::cout << "Car turning right" << std::endl;
 }
 
 void centerSteering() {
     car.setServoAngle(0);
+    std::cout << "Car steering centered" << std::endl;
 }
 
 int main() {
     try {
         Controller controller;
 
-        // Associa funções aos eixos do controle
-        controller.setAxisAction(SDL_CONTROLLER_AXIS_LEFTY, moveForwardBack);
-        controller.setAxisAction(SDL_CONTROLLER_AXIS_RIGHTX, turnLeftRight);
-
-        // Escuta eventos do controle
+        // Start listening for gamepad events
         controller.listen();
 
     } catch (const std::runtime_error &e) {
@@ -38,3 +48,4 @@ int main() {
 
     return 0;
 }
+

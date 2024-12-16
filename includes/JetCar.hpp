@@ -11,7 +11,6 @@ public:
     JetCar();
     ~JetCar();
 
-    // Métodos públicos
     void setMotorSpeed(int speed);
     void setServoAngle(int angle);
 

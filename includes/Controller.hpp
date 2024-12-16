@@ -1,11 +1,10 @@
-#ifndef CONTROLLER_HPP
-#define CONTROLLER_HPP
+#pragma once
 
-#include <SDL2/SDL.h>
-#include <unordered_map>
-#include <functional>
-#include <vector>
 #include <iostream>
+#include <functional>
+#include <array>
+#include <map>
+#include <SDL2/SDL.h>
 
 struct Actions {
     std::function<void()> onPress;
@@ -13,22 +12,18 @@ struct Actions {
 };
 
 class Controller {
-private:
-    SDL_GameController* gameController;
-    std::unordered_map<int, Actions> buttonActions;
-    std::unordered_map<int, std::function<void(int)>> axisActions;
-    std::unordered_map<int, int> currentAxisValues; // Mapa para os valores atuais dos eixos
-    std::vector<bool> buttonStates;
-
 public:
     Controller();
     ~Controller();
-
+    
     void setButtonAction(int button, Actions actions);
     void setAxisAction(int axis, std::function<void(int)> action);
-    void processEvent(const SDL_Event& event);
     void listen();
-    int getAxisValue(int axis) const; // Novo método para pegar o valor do eixo
-};
 
-#endif
+private:
+    SDL_GameController* gameController;
+    std::map<int, Actions> buttonActions;
+    std::map<int, std::function<void(int)>> axisActions; // Mapeia eixos a ações que recebem um valor
+    std::array<bool, SDL_CONTROLLER_BUTTON_MAX> buttonStates; // Armazenar estados dos botões
+    void processEvent(const SDL_Event& event);
+};
