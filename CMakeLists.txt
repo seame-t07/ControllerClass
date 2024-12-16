@@ -13,14 +13,20 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes)
 
+# Find and link the pigpio library
+# On Raspberry Pi, pigpio is usually installed and can be found directly
+find_library(PIGPIO_LIB pigpio REQUIRED)
+
 # List of source files
 set(SOURCES
     sources/Controller.cpp
+    sources/JetCar.cpp
+    main.cpp
 )
 
-# Create a library (static or shared)
-add_library(Controller ${SOURCES})
+# Add executable
+add_executable(ControllerExec ${SOURCES})
 
-# Link the library with SDL2
-target_link_libraries(Controller ${SDL2_LIBRARIES})
+# Link the executable with SDL2 and pigpio
+target_link_libraries(ControllerExec ${SDL2_LIBRARIES} ${PIGPIO_LIB})
 
