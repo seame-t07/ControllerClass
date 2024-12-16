@@ -5,34 +5,20 @@
 JetCar car;
 
 // Functions to control the car
-void moveForward() {
-    car.setMotorSpeed(100);
-    std::cout << "Car moving forward" << std::endl;
-}
-
-void moveBackward() {
-    car.setMotorSpeed(-100);
-    std::cout << "Car moving backward" << std::endl;
+void moveForwardBack(int speed) {
+    car.setMotorSpeed(speed);
 }
 
 void stopMovement() {
     car.setMotorSpeed(0);
-    std::cout << "Car stopped" << std::endl;
 }
 
-void turnLeft() {
-    car.setServoAngle(-45);
-    std::cout << "Car turning left" << std::endl;
-}
-
-void turnRight() {
-    car.setServoAngle(45);
-    std::cout << "Car turning right" << std::endl;
+void turnLeftRight(int angle) {
+    car.setServoAngle(angle);
 }
 
 void centerSteering() {
     car.setServoAngle(0);
-    std::cout << "Car steering centered" << std::endl;
 }
 
 int main() {
@@ -61,8 +47,22 @@ int main() {
         controller.setButtonAction(SDL_CONTROLLER_BUTTON_B, backwardActions);  // B button for backward
         controller.setButtonAction(SDL_CONTROLLER_BUTTON_X, leftActions);      // X button for left
         controller.setButtonAction(SDL_CONTROLLER_BUTTON_Y, rightActions);     // Y button for right
+    
+        int leftValue = controlle.getAxisValue(SDL_CONTROLLER_AXIS_LEFTY);
+        int rightValue = controller.getAxisValue(SDL_CONTROLLER_AXIS_RIGHTX);
 
-	controller.setAxesAction
+        if (leftValue == 0) {
+            stopMovement();
+        } else {
+            moveForwardBack(leftValue);
+        }
+
+        if (rightValue == 0) {
+            centerSteering();
+        } else {
+            turnLeftRight(rightValue);
+        }
+
         // Start listening for gamepad events
         controller.listen();
 
