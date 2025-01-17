@@ -23,7 +23,7 @@ jobs:
 
     - name: Run cross-compilation inside Docker
       run: |
-        docker run --rm --platform linux/arm64 -v /home/runner/work/ControllerClass/ControllerClass:/workspace controller-build \
+        docker run --rm --platform linux/arm64 -v /home/runner/work/ControllerClass/ControllerClass:/workspace hmacielp/crosscompile-gpio:latest \
         bash -c "cd /workspace && mkdir -p build && cd build && cmake .. && make"
 
     - name: Verify build output
