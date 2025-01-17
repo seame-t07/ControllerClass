@@ -1,0 +1,38 @@
+name: Build and Deploy Controller
+
+on:
+  push:
+    branches:
+      - main  # Executa apenas para a branch principal. Altere conforme necessário.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Etapa 1: Checkout do código
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Etapa 2: Configurar o Docker
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    # Etapa 3: Construir a imagem Docker
+    - name: Build Docker image
+      run: |
+        docker build -t controller-build -f Dockerfile .
+
+    # Etapa 4: Compilar o projeto
+    - name: Compile the project
+      run: |
+        docker run --rm -v ${{ github.workspace }}:/workspace controller-build \
+        bash -c "cd /workspace && mkdir -p build && cd build && cmake .. && make"
+
+    # Etapa 5: Copiar o executável via SCP (comentado por enquanto)
+    - name: Deploy to remote server
+      if: always()  # Esta etapa sempre será exibida no log, mas está comentada para não executar o SCP.
+      run: |
+        # Uncomment and replace with real values when ready
+        # scp /workspace/build/my_executable team07@<server_ip>:/remote/directory
+        echo "SCP command would run here"
