@@ -31,8 +31,6 @@ jobs:
 
     # Etapa 5: Copiar o executável via SCP (comentado por enquanto)
     - name: Deploy to remote server
-      if: always()  # Esta etapa sempre será exibida no log, mas está comentada para não executar o SCP.
+      if: always()
       run: |
-        # Uncomment and replace with real values when ready
-        # scp /workspace/build/my_executable team07@<server_ip>:/remote/directory
-        echo "SCP command would run here"
+          scp /workspace/build/my_executable team07@192.168.1.186:/Controller
