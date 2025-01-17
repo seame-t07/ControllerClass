@@ -3,4 +3,8 @@ FROM hmacielp/crosscompile-gpio:latest
 
 WORKDIR /workspace
 
-CMD ["/bin/bash"]
+COPY . .
+
+RUN chmod +x ./tools/entrypoint.sh
+
+ENTRYPOINT ["./tools/entrypoint.sh"]
