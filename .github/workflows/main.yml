@@ -1,0 +1,21 @@
+name: Cross-compile and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use Cross Compile Docker Action
+        uses: ./
+        with:
+          build_path: '/workspace'
+          output_path: '/workspace/build/ControllerExec'
+          deploy_ip: '192.168.1.186'
+
